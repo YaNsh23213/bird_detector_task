@@ -1,0 +1,4 @@
+ultralytics>=8.3.0
+opencv-python>=4.9.0
+py7zr>=0.21.0
+gdown>=5.2.0
