@@ -5,7 +5,9 @@
 ## 1. Встановлення
 Встановити залежності через команду:
 
+```bash
 pip install -r requirements.txt
+```
 
 ## 2. Датасет
 
@@ -15,48 +17,56 @@ pip install -r requirements.txt
 
 В цьому проєкті він важить 26мб, але як гарна практика не вантажити його напряму в гіт репозиторій, тому ми будемо отримувати датасет одним з двух варіантів нижче.
 
-Варіант A — завантажити архів (Google Drive) і розпакувати автоматично за допомогою скріпту "download_dataset.py":
+Варіант A — завантажити архів (Google Drive) і розпакувати автоматично за допомогою скріпту `download_dataset.py`:
 
+```bash
 python download_dataset.py --url "https://drive.google.com/file/d/11GuKqucSzP2oQsxL_wqhYw4U1R81Fb-C/view?usp=sharing"
+```
 
-Скрипт скачає архів і розпакує його у папку "dataset/".
+Скрипт скачає архів і розпакує його у папку `dataset/`.
 
 Варіант B (резервний) — завантажити датасет напряму з оригінального джерела (Roboflow)
-і розпакувати вручну у "dataset/"
+і розпакувати вручну у `dataset/`
 
 ### Приведення міток до одного класу bird
 
-Оригінальні мітки мають один class_id але з іншою назвою.
+Оригінальні мітки мають один `class_id` але з іншою назвою.
 Щоб привести їх до єдиного класу `bird` (nc=1) - запустіть:
 
+```bash
 python fix_labels.py
+```
 
-Скрипт замінює всі class_id на "0" у всіх ".txt" файлах (train/valid/test)
-та оновлює "dataset/data.yaml" ("nc: 1", "names: ['bird']").
+Скрипт замінює всі `class_id` на `0` у всіх `.txt` файлах (train/valid/test)
+та оновлює `dataset/data.yaml` ("nc: 1", "names: ['bird']").
 
 ## 3. Навчання моделі
 
 Виконується через команду:
 
+```bash
 python train.py
+```
 
 Що відбувається:
-- Модель донавчається на "dataset/data.yaml" у 50 епох.
-- Логи, графіки та проміжні ваги зберігаються в "runs/train/bird_detector/".
-- Найкращі ваги ("best.pt") скрипт автоматично копіює у "weights/best.pt".
+- Модель донавчається на `dataset/data.yaml` у 50 епох.
+- Логи, графіки та проміжні ваги зберігаються в `runs/train/bird_detector/`.
+- Найкращі ваги (`best.pt`) скрипт автоматично копіює у `weights/best.pt`.
 
 ## 4. Обробка відео навченою моделлю
 
 Виконується через команду:
 
+```bash
 python predict_video.py --input examples/input.mp4 --output examples/output.mp4
+```
 
 У папці вже наявні 3 відео з готовою обробкою.
 
 ## 5. Метрики на validation-вибірці
 
-Графіки "results.png" та "confusion_matrix.png"
-знаходяться в "runs/train/bird_detector/"
+Графіки `results.png` та `confusion_matrix.png`
+знаходяться в `runs/train/bird_detector/`
 
 
 ## 6. Проблеми та можливі покращення
